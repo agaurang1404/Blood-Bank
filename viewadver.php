@@ -1,4 +1,5 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if(!isset($_SESSION)) {session_start();}  ?>
+
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -43,12 +44,42 @@ if($_SESSION['loginstatus']=="")
        <?php include('left.php'); ?>
        </div>
        <div style="width:800px;float:left">
-<div style="height:500px; width:700px; margin:auto; margin-top:50px; margin-bottom:50px; background-color:#f8f1e4; border:2px solid red; box-shadow:4px 1px 20px black;">
-    <img src="images/admin.png" height="500px"/>
-        
-			
-			
-	</div>
+<br /><br />
+
+<?php include('function.php'); ?>
+
+
+       <form method="post">
+<table border="0" align="center" width="400px" height="30px" class="shaddoww">
+<tr><td colspan="2" align="center" class="toptd">View Advertisement </td></tr>
+<tr><td align="center" style="padding-top:10px">
+<table border="1" align="center" width="80%" height="200px" >
+<tr><td align="center">Advertisement Id </td><td align="center">Advertisement Name</td></tr>
+<tr><td>
+<?php
+$cn=mysqli_connect("localhost","root","","bloodbank");
+$s="select * from advertisement";
+	$result=mysqli_query($cn,$s);
+	$r=mysqli_num_rows($result);
+	//echo $r;
+	while($data=mysqli_fetch_array($result))
+	{
+		
+			echo "<tr><td style='padding-left:50px'>$data[0]</td><td style='padding-left:30px'>$data[1]</td></tr>";
+		}
+		
+		
+		
+	
+	mysqli_close($cn);
+
+?>
+</td></tr>
+</table>
+</table>
+
+
+</form>
        </div>
 
    </div>
